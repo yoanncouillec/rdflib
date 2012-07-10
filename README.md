@@ -1,5 +1,5 @@
-RDF lib
-==========
+RDF library for OCaml
+=====================
 
 Abstract
 --------
