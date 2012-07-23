@@ -2,9 +2,15 @@ open Rdflib
 
 let _ =
   graph_query 
-    "http://dbpedia.org:80/sparql" 
-    "application/x-binary-rdf" 
-    "construct {?s a <http://dbpedia.org/ontology/Artist>} where {?s a <http://dbpedia.org/ontology/Artist>}"
+    "http://localhost:8880/openrdf-sesame/repositories/lodac" 
+    "text/plain" 
+    ("PREFIX foaf: <http://xmlns.com/foaf/0.1/> "^
+       "CONSTRUCT {?uri a foaf:Person . "^
+       "?uri foaf:name ?name . "^
+       "} WHERE {"^
+       "?uri a foaf:Person . "^
+       "?uri foaf:name ?name . "^
+       "} LIMIT 100")
   (* graph_query 
     "http://localhost:8880/openrdf-sesame/repositories/yoann" 
     "text/plain" 

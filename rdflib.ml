@@ -82,10 +82,14 @@ let graph_query endpoint format query =
 	end
       else
 	begin
-	  let length = read_hexa ic in
-	  let content = (String.create length) in
-	    read ic content length ;
-	    print_string content
+	    let length = ref (read_hexa ic) in
+	      while !length > 0 do
+		let content = (String.create !length) in
+		  read ic content !length ;
+		  print_string content ;
+		  ignore_char ic 2 ;
+		  length := read_hexa ic
+	      done
 	end ;
       (* while true do print_char (input_char ic) ;flush stdout done ; *)
       Unix.shutdown_connection ic

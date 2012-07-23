@@ -73,3 +73,8 @@ let clean_newline s =
     | _ as c -> string_of_char c
   in join (List.map clean_newline_char (split_char s))
        
+let rec ignore_char ic n =
+  if n > 0 then begin
+    ignore (input_char ic) ;
+    ignore_char ic (n - 1)
+  end
