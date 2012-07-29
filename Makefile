@@ -1,8 +1,11 @@
-test: string2.cmo rdflib.cmo test.ml
-	ocamlc unix.cma str.cma $^ -o $@
+EXEC = test1.out test2.out test3.out
+all:$(EXEC)
 
-%.cmo: %.ml
-	ocamlc -c $^ -o $@
+%.out: string2.cmx rdflib.cmx %.ml
+	ocamlopt unix.cmxa str.cmxa $^ -o $@
 
-c:
-	rm -rf *.cm* test *~
+%.cmx: %.ml
+	ocamlopt -c $^ -o $@
+
+clean:
+	rm -rf *.cm* $(EXEC) *~ *.o
