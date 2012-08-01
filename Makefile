@@ -1,4 +1,4 @@
-EXEC = examples/test1.out examples/test2.out examples/test3.out
+EXEC = examples/test1.out examples/test2.out examples/test3.out examples/test4.out
 all: rdflib.cma rdflib.cmxa
 
 %.out: string2.cmx rdflib.cmx %.ml
